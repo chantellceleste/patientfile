@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - patientfile@localhost" uuid="949eae96-fb6b-4b03-adcc-4c88e17a601b">
+    <database-info product="MySQL" version="5.6.24-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="patientfile"/>
+    <table name="bill" schema="" catalog="patientfile" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="amount" sqlType="DOUBLE" precision="22" scale="0" nullable="false" jdbcType="8"/>
+      <column name="date" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="invoice_num" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="patient_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_65jjn87u0r0hvkg3qyhkwld9s" columns="patient_id" ref-table="patient" ref-schema="" ref-catalog="patientfile" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_65jjn87u0r0hvkg3qyhkwld9s" unique="false" columns="patient_id"/>
+    </table>
+    <table name="diagnosis" schema="" catalog="patientfile" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="date" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="description" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="patient_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_4lfyj0bqq0itvs5hthasxmp9g" columns="patient_id" ref-table="patient" ref-schema="" ref-catalog="patientfile" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_4lfyj0bqq0itvs5hthasxmp9g" unique="false" columns="patient_id"/>
+    </table>
+    <table name="patient" schema="" catalog="patientfile" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="age" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="first_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="id_number" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="last_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="occupation" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_65jjn87u0r0hvkg3qyhkwld9s" table="bill" schema="" catalog="patientfile" columns="patient_id"/>
+      <exported-key name="FK_4lfyj0bqq0itvs5hthasxmp9g" table="diagnosis" schema="" catalog="patientfile" columns="patient_id"/>
+    </table>
+  </data-source>
+</component>
