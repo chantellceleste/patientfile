@@ -15,9 +15,6 @@ public class Bill implements Serializable {
     private double amount;
     private Date date;
     private int invoiceNum;
-    //@OneToOne(cascade = CascadeType.ALL)
-    //@JoinColumn(name = "patient_id")
-    //private Patient patient;
 
     public Bill() {}
 

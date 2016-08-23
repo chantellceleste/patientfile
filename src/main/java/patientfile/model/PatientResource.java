@@ -1,46 +1,31 @@
-package patientfile.domain;
+package patientfile.model;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import org.apache.catalina.WebResourceRoot;
+import org.springframework.hateoas.ResourceSupport;
+import patientfile.domain.Bill;
+import patientfile.domain.Diagnosis;
+
 import java.util.List;
 
 /**
- * Created by chantell witbooi on 4/25/2015.
+ * Created by chantell witbooi on 8/22/2016.
  */
-@Entity
-public class Patient implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class PatientResource extends ResourceSupport {
+    private Long resId;
     private String lastName;
     private String firstName;
     private int age;
-
-    public int getIdNumber() {
-        return idNumber;
-    }
-
-    public void setIdNumber(int idNumber) {
-        this.idNumber = idNumber;
-    }
-
     private int idNumber;
     private String occupation;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "patient_id")
     private List<Bill> bill;
-
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinColumn(name = "patient_id")
     private List<Diagnosis> diagnoses;
 
-    public Patient() {
+    public PatientResource() {
 
     }
 
-    public Patient(Builder builder) {
-        id = builder.id;
+    public PatientResource(Builder builder) {
+        resId = builder.resId;
         lastName = builder.lastName;
         firstName = builder.firstName;
         age = builder.age;
@@ -49,8 +34,8 @@ public class Patient implements Serializable {
         bill = builder.bills;
     }
 
-    public Long getId(){
-        return id;
+    public Long getResId(){
+        return resId;
     }
 
     public String getFirstName(){
@@ -76,7 +61,7 @@ public class Patient implements Serializable {
 
 
     public static class Builder {
-        private Long id;
+        private Long resId;
 
         private String lastName;
         private String firstName;
@@ -89,8 +74,8 @@ public class Patient implements Serializable {
             this.idNumber = idNumber;
         }
 
-        public Builder id(Long value) {
-            this.id = value;
+        public Builder resId(Long value) {
+            this.resId = value;
             return this;
         }
 
@@ -123,8 +108,8 @@ public class Patient implements Serializable {
 
 
 
-        public Builder copy(Patient value) {
-            this.id = value.id;
+        public Builder copy(PatientResource value) {
+            this.resId = value.resId;
             this.firstName = value.firstName;
             this.lastName = value.lastName;
             this.age = value.age;
@@ -134,8 +119,8 @@ public class Patient implements Serializable {
             return this;
         }
 
-        public Patient build() {
-            return new Patient(this);
+        public PatientResource build() {
+            return new PatientResource(this);
         }
 
 
